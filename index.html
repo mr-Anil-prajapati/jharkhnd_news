@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>झारखंड न्यूज़ - Jharkhand News</title>
+  <meta name="description" content="झारखंड की सबसे तेज़ न्यूज़ वेबसाइट। नवीनतम खबरें हिंदी और अंग्रेजी में।">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
+    
+    .header {
+      background: linear-gradient(135deg, #e11d48, #be123c);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .header p { font-size: 1.2rem; opacity: 0.9; }
+    
+    .nav {
+      background: #1a1a1a;
+      padding: 15px;
+      text-align: center;
+    }
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    .nav a:hover { color: #fbbf24; }
+    
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .hero h2 { font-size: 2rem; margin-bottom: 15px; }
+    .hero p { font-size: 1.2rem; margin-bottom: 25px; }
+    .btn {
+      display: inline-block;
+      background: #fbbf24;
+      color: #1a1a1a;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .btn:hover { transform: scale(1.05); background: #f59e0b; }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .feature {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .feature h3 { color: #e11d48; margin-bottom: 10px; font-size: 1.5rem; }
+    .feature p { color: #666; line-height: 1.6; }
+    
+    .categories {
+      background: white;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .categories h2 { color: #e11d48; font-size: 2rem; margin-bottom: 30px; }
+    .cat-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cat-btn {
+      background: #f3f4f6;
+      color: #333;
+      padding: 15px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .cat-btn:hover { background: #e11d48; color: white; }
+    
+    .footer {
+      background: #1a1a1a;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .footer p { opacity: 0.7; }
+    
+    .coming-soon {
+      background: #fef3c7;
+      border: 2px dashed #f59e0b;
+      border-radius: 10px;
+      padding: 40px;
+      margin: 20px;
+      text-align: center;
+    }
+    .coming-soon h3 { color: #92400e; font-size: 1.8rem; margin-bottom: 10px; }
+    .coming-soon p { color: #b45309; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>📰 झारखंड न्यूज़</h1>
+    <p>Jharkhand's Fastest News Website</p>
+  </header>
+  
+  <nav class="nav">
+    <a href="#">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  
+  <section class="hero">
+    <h2>झारखंड की ताज़ा खबर</h2>
+    <p>सबसे पहले पाएं झारखंड, रांची, जमशेदपुर और पूरे भारत के नवीनतम समाचार</p>
+    <a href="#categories" class="btn">अभी देखें</a>
+  </section>
+  
+  <section class="features">
+    <div class="feature">
+      <h3>⚡ ताज़ा खबर</h3>
+      <p>झारखंड और राष्ट्रीय समाचार सबसे पहले</p>
+    </div>
+    <div class="feature">
+      <h3>💼 नौकरी</h3>
+      <p>सरकारी नौकरी, Sarkari Naukri के नए अपडेट</p>
+    </div>
+    <div class="feature">
+      <h3>🎓 शिक्षा</h3>
+      <p>बोर्ड परीक्षा, Admission और शिक्षा समाचार</p>
+    </div>
+    <div class="feature">
+      <h3>⚽ खेल</h3>
+      <p>IPL, Cricket और खेल समाचार</p>
+    </div>
+  </section>
+  
+  <section class="categories" id="categories">
+    <h2>समाचार श्रेणियां</h2>
+    <div class="cat-grid">
+      <a href="#" class="cat-btn">📍 झारखंड न्यूज़</a>
+      <a href="#" class="cat-btn">💼 सरकारी नौकरी</a>
+      <a href="#" class="cat-btn">⚽ खेल</a>
+      <a href="#" class="cat-btn">🎬 मनोरंजन</a>
+      <a href="#" class="cat-btn">🎓 शिक्षा</a>
+      <a href="#" class="cat-btn">🇮🇳 राष्ट्रीय</a>
+      <a href="#" class="cat-btn">🌏 अंतरराष्ट्रीय</a>
+    </div>
+  </section>
+  
+  <div class="coming-soon">
+    <h3>🚀 Website Launching Soon</h3>
+    <p>हम जल्द ही पूरी तरह से लाएंगे। तब तक हमारे सोशल मीडिया को फॉलो करें!</p>
+  </div>
+  
+  <footer class="footer" id="contact">
+    <p>&copy; 2026 झारखंड न्यूज़ | All Rights Reserved</p>
+    <p>Made with ❤️ for Jharkhand</p>
+  </footer>
+</body>
+</html>
