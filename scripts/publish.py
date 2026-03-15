@@ -1,4 +1,32 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+News Publisher Script
+Generates HTML pages from news JSON
+"""
+
+import json
+import os
+from datetime import datetime
+
+# Read news data
+with open('news/news.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+
+news_items = data['news']
+
+# Category names
+categories = {
+    'jharkhand': 'झारखंड न्यूज़',
+    'jobs': 'नौकरी',
+    'sports': 'खेल',
+    'entertainment': 'मनोरंजन',
+    'education': 'शिक्षा',
+    'national': 'राष्ट्रीय',
+    'international': 'अंतरराष्ट्रीय'
+}
+
+# Generate main index.html
+index_html = '''<!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
@@ -42,27 +70,24 @@
   <div class="container">
     <h2 class="section-title">ताज़ा खबर</h2>
     <div class="news-grid">
+'''
 
+# Add news cards
+for news in news_items:
+    cat_name = categories.get(news['category'], news['category'])
+    index_html += f'''
       <div class="news-card">
-        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" alt="झारखंड सरकार ने शिक्षकों के लिए बड़ी घोषणा की">
+        <img src="{news['image']}" alt="{news['title']}">
         <div class="news-card-content">
-          <span class="category">झारखंड न्यूज़</span>
-          <h3>झारखंड सरकार ने शिक्षकों के लिए बड़ी घोषणा की</h3>
-          <p>रांची: झारखंड सरकार ने राज्य के शिक्षकों के लिए एक नई योजना का ऐलान किया है।</p>
-          <p class="date">📅 2026-03-15</p>
+          <span class="category">{cat_name}</span>
+          <h3>{news['title']}</h3>
+          <p>{news['summary']}</p>
+          <p class="date">📅 {news['date']}</p>
         </div>
       </div>
+'''
 
-      <div class="news-card">
-        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800" alt="JSSC Constable Recruitment 2026 - 5000 पदों पर भर्ती">
-        <div class="news-card-content">
-          <span class="category">नौकरी</span>
-          <h3>JSSC Constable Recruitment 2026 - 5000 पदों पर भर्ती</h3>
-          <p>झारखंड कर्मचारी चयन आयोग (JSSC) ने कॉन्स्टेबल पदों पर भर्ती निकाली है।</p>
-          <p class="date">📅 2026-03-14</p>
-        </div>
-      </div>
-
+index_html += '''
     </div>
   </div>
   
@@ -71,3 +96,11 @@
   </footer>
 </body>
 </html>
+'''
+
+# Write index.html
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(index_html)
+
+print(f"✅ Generated index.html with {len(news_items)} news articles")
+print("Ready to push to GitHub!")
