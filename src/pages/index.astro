@@ -1,0 +1,197 @@
+---
+import Layout from '../layouts/Layout.astro';
+import newsData from '../data/news.json';
+
+const news = newsData.news;
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path = '') => `${baseUrl.replace(/\/$/, '')}/${path}`.replace(/\/$/, '');
+
+const categories = {
+  jharkhand: 'झारखंड न्यूज़',
+  jobs: 'नौकरी',
+  sports: 'खेल',
+  entertainment: 'मनोरंजन',
+  education: 'शिक्षा',
+  national: 'राष्ट्रीय',
+  international: 'अंतरराष्ट्रीय',
+  top: 'टॉप न्यूज़'
+};
+
+const featured = news[0];
+const jharkhandNews = news.filter(n => n.category === 'jharkhand');
+const jobNews = news.filter(n => n.category === 'jobs');
+const leadStories = news.slice(1, 4);
+const spotlightStories = news.slice(0, 3);
+---
+
+<Layout title="Home" description="Latest news from Jharkhand">
+  <section class="hero-shell">
+    <div class="hero-grid">
+      <article class="hero-lead">
+        <img src={featured.image} alt={featured.title} class="hero-image">
+        <div class="hero-sheen"></div>
+        <div class="hero-copy">
+          <span class="eyebrow">{categories[featured.category]}</span>
+          <p class="hero-meta">Curated lead story</p>
+          <h1>{featured.title}</h1>
+          <p>{featured.summary}</p>
+          <a href={withBase(`news/${featured.id}`)} class="hero-link">पूरी खबर पढ़ें</a>
+        </div>
+      </article>
+
+      <div class="hero-side-stack">
+        {leadStories.map((item, index) => (
+          <a href={withBase(`news/${item.id}`)} class="signal-card signal-card-alt">
+            <span class="signal-index">0{index + 1}</span>
+            <div>
+              <span class="eyebrow eyebrow-muted">{categories[item.category]}</span>
+              <h2>{item.title}</h2>
+              <p>{item.summary}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">Daily Edit</span>
+        <h2 class="section-display">Top stories with a magazine finish</h2>
+      </div>
+      <p class="section-note">एक प्रीमियम फ्रंट पेज जहां प्रमुख राज्य समाचार, भर्ती अपडेट्स और सांस्कृतिक कवरेज एक साफ विजुअल सिस्टम में दिखते हैं।</p>
+    </div>
+
+    <div class="spotlight-grid">
+      {spotlightStories.map((item, index) => (
+        <article class={`spotlight-card ${index === 0 ? 'spotlight-card-large' : ''}`}>
+          <img src={item.image} alt={item.title}>
+          <div class="spotlight-copy">
+            <span class="eyebrow">{categories[item.category]}</span>
+            <h3>{item.title}</h3>
+            <p>{item.summary}</p>
+            <a href={withBase(`news/${item.id}`)} class="text-link">Explore story</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">State Focus</span>
+        <h2 class="section-display">झारखंड की मुख्य खबरें</h2>
+      </div>
+      <a href={withBase('category/jharkhand')} class="section-link">सभी खबरें</a>
+    </div>
+
+    <div class="editorial-grid">
+      {jharkhandNews.length > 0 ? jharkhandNews.map((item, index) => (
+        <article class={`news-panel ${index === 0 ? 'news-panel-featured' : ''}`}>
+          <img src={item.image} alt={item.title}>
+          <div class="news-panel-copy">
+            <span class="eyebrow eyebrow-muted">{categories[item.category]}</span>
+            <h3>{item.title}</h3>
+            <p>{item.summary}</p>
+            <div class="news-panel-meta">
+              <span>{item.date}</span>
+              <a href={withBase(`news/${item.id}`)} class="text-link">Read report</a>
+            </div>
+          </div>
+        </article>
+      )) : (
+        <p class="empty-state">कोई समाचार उपलब्ध नहीं</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">Career Desk</span>
+        <h2 class="section-display">सरकारी नौकरी और भर्ती अपडेट</h2>
+      </div>
+      <a href={withBase('category/jobs')} class="section-link">जॉब सेक्शन</a>
+    </div>
+    <div class="jobs-strip">
+      {jobNews.map(item => (
+        <article class="job-card">
+          <div class="job-card-top">
+            <span class="job-badge">Jobs</span>
+            <span class="job-date">{item.date}</span>
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.summary}</p>
+          <a href={withBase(`news/${item.id}`)} class="hero-link job-link">Apply details</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="split-section">
+    <div class="split-column split-column-dark">
+      <div class="section-head section-head-tight">
+        <div>
+          <span class="section-kicker">Quick Watch</span>
+          <h2 class="section-display section-display-light">खेल समाचार</h2>
+        </div>
+      </div>
+      <div class="list-stack">
+        {news.filter(n => n.category === 'sports').map(item => (
+          <a href={withBase(`news/${item.id}`)} class="list-card">
+            <img src={item.image} alt={item.title}>
+            <div>
+              <span class="eyebrow eyebrow-muted">Sports</span>
+              <h3>{item.title}</h3>
+              <p>{item.date}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="split-column split-column-light">
+      <div class="section-head section-head-tight">
+        <div>
+          <span class="section-kicker">Academic Pulse</span>
+          <h2 class="section-display">शिक्षा समाचार</h2>
+        </div>
+      </div>
+      <div class="list-stack">
+        {news.filter(n => n.category === 'education').map(item => (
+          <a href={withBase(`news/${item.id}`)} class="list-card list-card-light">
+            <img src={item.image} alt={item.title}>
+            <div>
+              <span class="eyebrow eyebrow-muted">Education</span>
+              <h3>{item.title}</h3>
+              <p>{item.date}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <aside class="section-block">
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">Trending Board</span>
+        <h2 class="section-display">ट्रेंडिंग न्यूज़</h2>
+      </div>
+    </div>
+    <div class="trending-board">
+      <ol>
+        {news.slice(0, 5).map((item, i) => (
+          <li>
+            <a href={withBase(`news/${item.id}`)}>
+              <span class="trend-number">0{i + 1}</span>
+              <span>{item.title}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </aside>
+</Layout>

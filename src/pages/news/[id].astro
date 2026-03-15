@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import newsData from '../../data/news.json';
+
+export function getStaticPaths() {
+  const news = newsData.news;
+  
+  return news.map(item => ({
+    params: { id: item.id },
+    props: { news: item }
+  }));
+}
+
+const { news } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path = '') => `${baseUrl.replace(/\/$/, '')}/${path}`.replace(/\/$/, '');
+
+const categoryNames = {
+  jharkhand: 'झारखंड न्यूज़',
+  jobs: 'नौकरी',
+  sports: 'खेल',
+  entertainment: 'मनोरंजन',
+  education: 'शिक्षा',
+  national: 'राष्ट्रीय',
+  international: 'अंतरराष्ट्रीय',
+  top: 'टॉप न्यूज़'
+};
+
+const relatedNews = newsData.news
+  .filter((item) => item.category === news.category && item.id !== news.id)
+  .slice(0, 3);
+---
+
+<Layout title={news.title} description={news.summary}>
+  <article class="article-shell">
+    <header class="article-hero">
+      <div class="article-heading">
+        <a href={withBase(`category/${news.category}`)} class="back-link">← {categoryNames[news.category]}</a>
+        <span class="eyebrow">{categoryNames[news.category]}</span>
+        <h1>{news.title}</h1>
+        <p>{news.summary}</p>
+        <div class="article-meta">
+          <span>{news.date}</span>
+          <span>{news.tags.join(' • ')}</span>
+        </div>
+      </div>
+      <img src={news.image} alt={news.title} class="article-hero-image">
+    </header>
+
+    <div class="article-layout">
+      <div class="article-body-card">
+        <div class="article-summary-box">
+          <span class="section-kicker">Summary</span>
+          <h2>सारांश</h2>
+          <p>{news.summary}</p>
+        </div>
+        <div class="article-body">
+      {news.content.split('\n\n').map(para => (
+            <p>{para}</p>
+      ))}
+        </div>
+      </div>
+
+      <aside class="article-sidebar">
+        <div class="sidebar-card">
+          <span class="section-kicker">Story Tags</span>
+          <div class="tag-cloud">
+      {news.tags.map(tag => (
+              <span>#{tag}</span>
+      ))}
+          </div>
+        </div>
+
+        <div class="sidebar-card sidebar-card-dark">
+          <span class="section-kicker">Share</span>
+          <h3>Spread this story</h3>
+          <div class="share-grid">
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${withBase(`news/${news.id}`)}`} target="_blank" rel="noreferrer">Facebook</a>
+            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(news.title)}&url=${withBase(`news/${news.id}`)}`} target="_blank" rel="noreferrer">Twitter</a>
+            <a href={`https://wa.me/?text=${encodeURIComponent(`${news.title} ${withBase(`news/${news.id}`)}`)}`} target="_blank" rel="noreferrer">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <span class="section-kicker">Related</span>
+          <div class="related-list">
+      {relatedNews.length > 0 ? relatedNews.map((item) => (
+              <a href={withBase(`news/${item.id}`)}>{item.title}</a>
+      )) : (
+            <a href={withBase(`category/${news.category}`)}>इस सेक्शन की और खबरें देखें</a>
+      )}
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="section-block article-more">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Continue Reading</span>
+          <h2 class="section-display">और खबरें</h2>
+        </div>
+      </div>
+      <div class="category-grid">
+        {newsData.news.filter((item) => item.id !== news.id).slice(0, 3).map((item, index) => (
+          <article class={`category-card ${index === 0 ? 'category-card-featured' : ''}`}>
+            <img src={item.image} alt={item.title}>
+            <div class="category-card-copy">
+              <span class="eyebrow eyebrow-muted">{categoryNames[item.category]}</span>
+              <h2>{item.title}</h2>
+              <p>{item.summary}</p>
+              <a href={withBase(`news/${item.id}`)} class="text-link">Open story</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </article>
+</Layout>

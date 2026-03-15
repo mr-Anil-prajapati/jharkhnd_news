@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import newsData from '../../data/news.json';
+
+export function getStaticPaths() {
+  const categories = [...new Set(newsData.news.map((item) => item.category))];
+  return categories.map(cat => ({
+    params: { category: cat }
+  }));
+}
+
+const { category } = Astro.params;
+const news = newsData.news;
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path = '') => `${baseUrl.replace(/\/$/, '')}/${path}`.replace(/\/$/, '');
+
+const categoryNames = {
+  jharkhand: 'झारखंड न्यूज़',
+  jobs: 'नौकरी / सरकारी नौकरी',
+  sports: 'खेल समाचार',
+  entertainment: 'मनोरंजन',
+  education: 'शिक्षा समाचार',
+  national: 'राष्ट्रीय खबर',
+  international: 'अंतरराष्ट्रीय खबर',
+  top: 'टॉप न्यूज़'
+};
+
+const categoryNews = news.filter(n => n.category === category);
+---
+
+<Layout title={categoryNames[category]} description={`Latest ${categoryNames[category]} news from Jharkhand`}>
+  <section class="category-hero">
+    <div>
+      <a href={withBase()} class="back-link">← Back to Home</a>
+      <span class="section-kicker">Editorial Section</span>
+      <h1 class="category-title">{categoryNames[category] || 'समाचार'}</h1>
+      <p class="category-copy">इस सेक्शन में चुनी हुई खबरें कार्ड आधारित प्रीमियम लेआउट में व्यवस्थित हैं ताकि स्कैन करना तेज और विजुअल अनुभव बेहतर रहे।</p>
+    </div>
+    <div class="category-stat-card">
+      <span class="category-stat-label">Stories in this section</span>
+      <strong>{categoryNews.length}</strong>
+      <p>Fresh cards, better reading rhythm, and a premium presentation layer.</p>
+    </div>
+  </section>
+
+  {categoryNews.length > 0 ? (
+    <div class="category-grid">
+      {categoryNews.map((item, index) => (
+        <article class={`category-card ${index === 0 ? 'category-card-featured' : ''}`}>
+          <img src={item.image} alt={item.title}>
+          <div class="category-card-copy">
+            <span class="eyebrow eyebrow-muted">{categoryNames[item.category] || item.category}</span>
+            <h2>{item.title}</h2>
+            <p>{item.summary}</p>
+            <div class="news-panel-meta">
+              <span>{item.date}</span>
+              <a href={withBase(`news/${item.id}`)} class="text-link">Read story</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <p class="empty-state">इस श्रेणी में कोई समाचार उपलब्ध नहीं है।</p>
+  )}
+</Layout>
