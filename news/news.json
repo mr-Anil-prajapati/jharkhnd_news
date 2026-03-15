@@ -1,6 +1,24 @@
 {
   "news": [
     {
+      "id": 9,
+      "title": "New AI Policy for Jharkhand: Focus on Tech Jobs",
+      "category": "education",
+      "date": "2026-03-15",
+      "summary": "State government announces a new policy to integrate AI training in vocational courses.",
+      "content": "To prepare the youth for the future job market, the Jharkhand government has unveiled a New AI Policy. The initiative aims to provide AI and Data Science training to over 50,000 students in ITIs and Polytechnics across the state within the next two years.",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800"
+    },
+    {
+      "id": 8,
+      "title": "JPSC Civil Services 2026 Notification Expected Soon",
+      "category": "jharkhand",
+      "date": "2026-03-15",
+      "summary": "Jharkhand Public Service Commission is likely to release the notification for the 2026 Civil Services exam by next week.",
+      "content": "Candidates awaiting the JPSC Civil Services 2026 notification may have good news soon. Sources suggest the commission has finalized the seat matrix and is waiting for the final nod from the state government. Over 300 vacancies are expected across various administrative posts.",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800"
+    },
+    {
       "title": "Indian Railways Recruitment 2026: 50,000+ Vacancies Announced",
       "category": "jobs",
       "summary": "Ministry of Railways announces mega recruitment drive for various technical and non-technical posts.",
