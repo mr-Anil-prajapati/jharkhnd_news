@@ -1,6 +1,24 @@
 {
   "news": [
     {
+      "title": "Indian Railways Recruitment 2026: 50,000+ Vacancies Announced",
+      "category": "jobs",
+      "summary": "Ministry of Railways announces mega recruitment drive for various technical and non-technical posts.",
+      "content": "The Ministry of Railways has announced one of the largest recruitment drives for the year 2026, targeting over 50,000 vacancies in RRB and RRC sectors. Online applications start next week.",
+      "image": "https://images.unsplash.com/photo-1474487543417-981ceee1c0c8?w=800",
+      "id": 7,
+      "date": "2026-03-15"
+    },
+    {
+      "title": "JSSC CGL 2026 Admit Card Released - Check Direct Link",
+      "category": "jobs",
+      "summary": "Jharkhand Staff Selection Commission has released the admit cards for the CGL 2026 examination.",
+      "content": "JSSC has finally released the hall tickets for the Combined Graduate Level Competitive Exam 2026. Candidates can download their admit cards from the official website using their registration number and date of birth.",
+      "image": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800",
+      "id": 6,
+      "date": "2026-03-15"
+    },
+    {
       "id": 1,
       "title": "भारत घरेलू चिपमेकिंग को बढ़ावा देने के लिए ₹1 लाख करोड़ की फंड घोषित करेगा",
       "category": "national",
