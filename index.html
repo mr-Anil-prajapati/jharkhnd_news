@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>झारखंड न्यूज़ - Jharkhand News</title>
+  <title>Home - झारखंड न्यूज़</title>
   <meta name="description" content="झारखंड की सबसे तेज़ न्यूज़ वेबसाइट">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,7 +13,6 @@
     .nav { background: #1a1a1a; padding: 15px; text-align: center; }
     .nav a { color: white; text-decoration: none; margin: 0 15px; }
     .nav a:hover { color: #fbbf24; }
-    .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200'); background-size: cover; color: white; padding: 80px 20px; text-align: center; }
     .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
     .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .news-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
@@ -24,12 +23,12 @@
     .news-card .date { color: #666; font-size: 0.9rem; margin-top: 10px; }
     .footer { background: #1a1a1a; color: white; padding: 30px; text-align: center; margin-top: 50px; }
     .section-title { color: #e11d48; font-size: 1.8rem; margin: 30px 0 20px; border-left: 4px solid #e11d48; padding-left: 15px; }
+    .back-link { display: inline-block; margin-bottom: 20px; color: #e11d48; text-decoration: none; }
   </style>
 </head>
 <body>
   <header class="header">
     <h1>📰 झारखंड न्यूज़</h1>
-    <p>Jharkhand's Fastest News Website</p>
   </header>
   <nav class="nav">
     <a href="/">Home</a>
@@ -38,11 +37,7 @@
     <a href="/category/sports">खेल</a>
     <a href="/category/education">शिक्षा</a>
   </nav>
-  
-  <div class="container">
-    <h2 class="section-title">ताज़ा खबर</h2>
-    <div class="news-grid">
-
+  <div class="container"><h2 class="section-title">ताज़ा खबर</h2><div class="news-grid">
       <div class="news-card">
         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800" alt="भारत घरेलू चिपमेकिंग को बढ़ावा देने के लिए ₹1 लाख करोड़ की फंड घोषित करेगा">
         <div class="news-card-content">
@@ -52,7 +47,6 @@
           <p class="date">📅 2026-03-13</p>
         </div>
       </div>
-
       <div class="news-card">
         <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800" alt="जम्मू कोर्ट ने फारूक अब्दुल्ला पर हमलावर को 5 दिन की पुलिस हिरासत में भेजा">
         <div class="news-card-content">
@@ -62,7 +56,6 @@
           <p class="date">📅 2026-03-13</p>
         </div>
       </div>
-
       <div class="news-card">
         <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?w=800" alt="झारखंड: असम कांग्रेस प्र chief गौरव गोगोई ने हेमंत सोरेन से मुलाकात की">
         <div class="news-card-content">
@@ -72,7 +65,6 @@
           <p class="date">📅 2026-03-13</p>
         </div>
       </div>
-
       <div class="news-card">
         <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800" alt="राहुल गांधी ने चेतावनी दी - पश्चिम एशिया संघर्ष का भारत पर गंभीर प्रभाव">
         <div class="news-card-content">
@@ -82,7 +74,6 @@
           <p class="date">📅 2026-03-13</p>
         </div>
       </div>
-
       <div class="news-card">
         <img src="https://images.unsplash.com/photo-1473621038790-b778b4750efe?w=800" alt="तेल की कीमत 100 डॉलर से ऊपर: ईरान युद्ध से आपूर्ति में व्यवधान">
         <div class="news-card-content">
@@ -91,12 +82,7 @@
           <p>ईरान की शिपिंग ट्रैफिक और ऊर्जा इन्फ्रास्ट्रक्चर पर लगातार हमलों के कारण तेल की कीमत गुरुवार को 100 डॉलर प्रति बैरल से ऊपर पहुंच गई।</p>
           <p class="date">📅 2026-03-13</p>
         </div>
-      </div>
-
-    </div>
-  </div>
-  
-  <footer class="footer">
+      </div></div>  <footer class="footer">
     <p>&copy; 2026 झारखंड न्यूज़ | All Rights Reserved</p>
   </footer>
 </body>
