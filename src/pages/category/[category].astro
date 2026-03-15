@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import newsData from '../../data/news.json';
 
 export function getStaticPaths() {
-  const categories = [...new Set(newsData.news.map((item) => item.category))];
+  const categories = ['jharkhand', 'jobs', 'sports', 'entertainment', 'education', 'national', 'international', 'top'];
   return categories.map(cat => ({
     params: { category: cat }
   }));
