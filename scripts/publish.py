@@ -58,7 +58,7 @@ def create_page_header(title):
     <h1>📰 झारखंड न्यूज़</h1>
   </header>
   <nav class="nav">
-    <a href="/">Home</a>
+    <a href="/jharkhnd_news/">Home</a>
     <a href="/jharkhnd_news/category/jharkhand">झारखंड</a>
     <a href="/jharkhnd_news/category/jobs">नौकरी</a>
     <a href="/jharkhnd_news/category/sports">खेल</a>
@@ -101,7 +101,7 @@ for cat_id, cat_name in categories.items():
     
     os.makedirs(f'category/{cat_id}', exist_ok=True)
     cat_html = create_page_header(cat_name)
-    cat_html += f'<a href="/" class="back-link">← Back to Home</a>'
+    cat_html += f'<a href="/jharkhnd_news/" class="back-link">← Back to Home</a>'
     cat_html += f'<h2 class="section-title">{cat_name}</h2>'
     
     if cat_news:
