@@ -50,6 +50,7 @@ def create_page_header(title):
     .footer {{ background: #1a1a1a; color: white; padding: 30px; text-align: center; margin-top: 50px; }}
     .section-title {{ color: #e11d48; font-size: 1.8rem; margin: 30px 0 20px; border-left: 4px solid #e11d48; padding-left: 15px; }}
     .back-link {{ display: inline-block; margin-bottom: 20px; color: #e11d48; text-decoration: none; }}
+    .no-news {{ text-align: center; padding: 50px; color: #666; }}
   </style>
 </head>
 <body>
@@ -58,10 +59,10 @@ def create_page_header(title):
   </header>
   <nav class="nav">
     <a href="/">Home</a>
-    <a href="/category/jharkhand">झारखंड</a>
-    <a href="/category/jobs">नौकरी</a>
-    <a href="/category/sports">खेल</a>
-    <a href="/category/education">शिक्षा</a>
+    <a href="/jharkhnd_news/category/jharkhand">झारखंड</a>
+    <a href="/jharkhnd_news/category/jobs">नौकरी</a>
+    <a href="/jharkhnd_news/category/sports">खेल</a>
+    <a href="/jharkhnd_news/category/education">शिक्षा</a>
   </nav>
   <div class="container">'''
 
@@ -94,16 +95,17 @@ index_html += '</div>' + create_page_footer()
 with open('index.html', 'w', encoding='utf-8') as f:
     f.write(index_html)
 
-# Generate category pages
+# Generate category pages - ALL categories, even if empty
 for cat_id, cat_name in categories.items():
     cat_news = [n for n in news_items if n['category'] == cat_id]
     
+    os.makedirs(f'category/{cat_id}', exist_ok=True)
+    cat_html = create_page_header(cat_name)
+    cat_html += f'<a href="/" class="back-link">← Back to Home</a>'
+    cat_html += f'<h2 class="section-title">{cat_name}</h2>'
+    
     if cat_news:
-        os.makedirs(f'category/{cat_id}', exist_ok=True)
-        cat_html = create_page_header(cat_name)
-        cat_html += f'<a href="/" class="back-link">← Back to Home</a>'
-        cat_html += f'<h2 class="section-title">{cat_name}</h2><div class="news-grid">'
-        
+        cat_html += '<div class="news-grid">'
         for news in cat_news:
             cat_html += f'''
         <div class="news-card">
@@ -115,10 +117,17 @@ for cat_id, cat_name in categories.items():
             <p class="date">📅 {news['date']}</p>
           </div>
         </div>'''
-        
-        cat_html += '</div>' + create_page_footer()
-        
-        with open(f'category/{cat_id}/index.html', 'w', encoding='utf-8') as f:
-            f.write(cat_html)
+        cat_html += '</div>'
+    else:
+        cat_html += f'''
+        <div class="no-news">
+          <h3>कोई समाचार उपलब्ध नहीं</h3>
+          <p>जल्द ही {cat_name} समाचार यहां आएंगे।</p>
+        </div>'''
+    
+    cat_html += create_page_footer()
+    
+    with open(f'category/{cat_id}/index.html', 'w', encoding='utf-8') as f:
+        f.write(cat_html)
 
 print(f"✅ Generated index.html + {len(categories)} category pages with {len(news_items)} news articles")
